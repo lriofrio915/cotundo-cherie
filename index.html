@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotundo Chèrie - Realizar Pedido</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Font Awesome for Icons (Optional but nice) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
 
     <div class="background-overlay"></div>
@@ -27,7 +31,7 @@
         </header>
 
         <form id="orderForm" class="order-form">
-            
+
             <!-- Datos del Cliente -->
             <section class="form-section">
                 <h2 class="section-title">Datos del Cliente</h2>
@@ -70,13 +74,14 @@
             </section>
 
             <!-- Secciones Dinámicas -->
-            
+
             <!-- Submenú de Mesas -->
             <div id="tables-section" class="dynamic-section hidden">
                 <div class="input-group">
                     <label for="tableSelect"><i class="fas fa-chair"></i> Selecciona tu Mesa</label>
                     <select id="tableSelect" name="table">
                         <option value="" disabled selected>Elige una opción...</option>
+                        <option value="Sin preferencia">Ninguna mesa en particular</option>
                         <option value="San Pedro">San Pedro</option>
                         <option value="San Antonio">San Antonio</option>
                         <option value="Buenos Aires">Buenos Aires</option>
@@ -140,4 +145,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

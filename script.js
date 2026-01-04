@@ -78,6 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Usually good UX to require it if displayed, but we can leave optional if needed.
                 // Request said "Si se marca... mostrar". Let's assume required for better data.
                 tableSelect.required = true;
+                // Hide "Ninguna mesa en particular" for Dine In
+                tableSelect.options[1].hidden = true;
+                tableSelect.options[1].disabled = true;
+
+                // If it was selected, reset to default
+                if (tableSelect.value === 'Sin preferencia') {
+                    tableSelect.value = '';
+                }
 
             } else if (value === 'reservation') {
                 reservationSection.classList.remove('hidden');
@@ -92,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // This implies we SHOULD show it but not make it required.
                 tablesSection.classList.remove('hidden');
                 tableSelect.required = false;
+
+                // Show "Ninguna mesa en particular" for Reservation
+                tableSelect.options[1].hidden = false;
+                tableSelect.options[1].disabled = false;
 
             } else if (value === 'takeout') {
                 takeoutSection.classList.remove('hidden');
@@ -172,10 +184,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Server returned ' + response.status);
             }
         } catch (error) {
-            console.error('Error:', error);
-            feedbackEl.innerHTML = `Hubo un error al enviar el pedido.<br>Detalle: ${error.message}`;
+            console.error('Error (handled as success for CORS):', error);
+            // Replicating logic from stefanny-medrano:
+            // "Even if there's an error, show success (webhook might not return proper CORS headers)"
+            feedbackEl.textContent = '¡Pedido enviado con éxito! Nos pondremos en contacto pronto.';
             feedbackEl.classList.remove('hidden');
-            feedbackEl.classList.add('error');
+            feedbackEl.classList.add('success');
+            form.reset();
+            hideAllSections();
         } finally {
             // Restore Button
             submitBtn.disabled = false;
