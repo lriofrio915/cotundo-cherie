@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotundo Chèrie - Realizar Pedido</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome for Icons (Optional but nice) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+
+    <main class="container">
+        <header class="form-header">
+            <h1 class="brand-title">Cotundo Chèrie</h1>
+            <p class="brand-subtitle">Café & Gastronomía</p>
+        </header>
+
+        <form id="orderForm" class="order-form">
+            
+            <!-- Datos del Cliente -->
+            <section class="form-section">
+                <h2 class="section-title">Datos del Cliente</h2>
+                <div class="input-group">
+                    <label for="name"><i class="fas fa-user"></i> Nombre Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="input-group">
+                    <label for="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ej: 0991234567" required>
+                </div>
+            </section>
+
+            <!-- Tipo de Pedido -->
+            <section class="form-section">
+                <h2 class="section-title">Tipo de Pedido</h2>
+                <div class="radio-group">
+                    <label class="radio-card">
+                        <input type="radio" name="orderType" value="dine_in">
+                        <span class="radio-content">
+                            <i class="fas fa-utensils"></i>
+                            <span>Servirse en el local</span>
+                        </span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="orderType" value="reservation">
+                        <span class="radio-content">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Reserva (Mesa)</span>
+                        </span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="orderType" value="takeout">
+                        <span class="radio-content">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Para llevar</span>
+                        </span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Secciones Dinámicas -->
+            
+            <!-- Submenú de Mesas -->
+            <div id="tables-section" class="dynamic-section hidden">
+                <div class="input-group">
+                    <label for="tableSelect"><i class="fas fa-chair"></i> Selecciona tu Mesa</label>
+                    <select id="tableSelect" name="table">
+                        <option value="" disabled selected>Elige una opción...</option>
+                        <option value="San Pedro">San Pedro</option>
+                        <option value="San Antonio">San Antonio</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Mushullacta">Mushullacta</option>
+                        <option value="Boaloma">Boaloma</option>
+                        <option value="Cascabel">Cascabel</option>
+                        <option value="De los Jefes">De los Jefes</option>
+                        <option value="Retén">Retén</option>
+                        <option value="Huasquila">Huasquila</option>
+                        <option value="Rumiñahui">Rumiñahui</option>
+                        <option value="Piedra Grande">Piedra Grande</option>
+                        <option value="San Francisco">San Francisco</option>
+                        <option value="20 de Mayo">20 de Mayo</option>
+                        <option value="Balcón 1">Balcón 1</option>
+                        <option value="Balcón 2">Balcón 2</option>
+                        <option value="La Barra">La Barra</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Reserva -->
+            <div id="reservation-section" class="dynamic-section hidden">
+                <div class="row">
+                    <div class="input-group">
+                        <label for="resDate"><i class="far fa-calendar"></i> Fecha</label>
+                        <input type="date" id="resDate" name="resDate">
+                    </div>
+                    <div class="input-group">
+                        <label for="resTime"><i class="far fa-clock"></i> Hora</label>
+                        <input type="time" id="resTime" name="resTime">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="resPax"><i class="fas fa-users"></i> Cantidad de Personas</label>
+                    <input type="number" id="resPax" name="resPax" min="1" max="20" placeholder="Ej: 4">
+                </div>
+            </div>
+
+            <!-- Para Llevar -->
+            <div id="takeout-section" class="dynamic-section hidden">
+                <div class="row">
+                    <div class="input-group">
+                        <label for="pickupDate"><i class="far fa-calendar"></i> Fecha de Retiro</label>
+                        <input type="date" id="pickupDate" name="pickupDate">
+                    </div>
+                    <div class="input-group">
+                        <label for="pickupTime"><i class="far fa-clock"></i> Hora de Retiro</label>
+                        <input type="time" id="pickupTime" name="pickupTime">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">Enviar Pedido</span>
+                <span class="btn-loader hidden"><i class="fas fa-spinner fa-spin"></i></span>
+            </button>
+
+            <div id="feedback-message" class="feedback hidden"></div>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
